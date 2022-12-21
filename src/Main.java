@@ -33,6 +33,10 @@ public class Main {
         System.out.println("Ф.И.О всех сотрудников: ");
         separator();
         initialsEmployee();
+        separator();
+        salaryIndexation();
+        separator();
+        minDeportamentSalaryEmployees ();
     }
 
     //ВЫВОД ВСЕХ СОТРУДНИКОВ
@@ -96,6 +100,32 @@ public class Main {
     public static void initialsEmployee() {
         for (int i = 0; i < employees.length; i++)
             System.out.println(employees[i].getInitials());
+    }
+
+    ////ПОВЫШЕНАЯ СЛОЖНОСТЬ
+    //ИНДЕКСАЦИЯ ЗАРПЛАТ
+    public static void salaryIndexation() {
+        double percent = 0.03;
+        double totalSalary;
+        for (int i = 0; i < employees.length; i++) {
+            totalSalary = employees[i].getSalary() + (employees[i].getSalary() * percent);
+            System.out.println(employees[i].getInitials() + " Зарплата проиндексированна до: " + totalSalary);
+        }
+    }
+    ////ОТДЕЛЫ
+    //СОТРУДНИК С МИНИМАЛЬНОЙ ЗП
+    public static void minDeportamentSalaryEmployees () {
+        String minDeportamentEmployee = null;
+        double minDeportamentSalary = employees[0].getSalary();
+        int minDeportament = employees[0].getDeportament();
+        for (int i = 0; i < employees.length; i++) {
+            if (minDeportamentSalary >= employees[i].getSalary() || minDeportament == employees[i].getDeportament()) {
+                minDeportamentEmployee = employees[i].getInitials();
+                minDeportamentSalary = employees[i].getSalary();
+                minDeportament = employees[i].getDeportament();
+            }
+        }
+        System.out.println("Сотрудник с минимальной зарплатой в отделе: " + minDeportament + " " + minDeportamentSalary + " " + minDeportamentEmployee);
     }
 
     //РАЗДЕЛИТЕЛЬ
