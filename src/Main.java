@@ -36,7 +36,19 @@ public class Main {
         separator();
         salaryIndexation();
         separator();
-        minDeportamentSalaryEmployees ();
+        minDeportamentSalaryEmployees(4);
+        separator();
+        maxDeportamentSalaryEmployees(3);
+        separator();
+        averageDeportamentSalary(5);
+        separator();
+        salaryDeportamentIndexation(2);
+        separator();
+        employeeDeportamentString(4);
+        separator();
+        salaryLessSpecified(35000);
+        separator();
+        salaryMoreGiven(35000);
     }
 
     //ВЫВОД ВСЕХ СОТРУДНИКОВ
@@ -109,23 +121,118 @@ public class Main {
         double totalSalary;
         for (int i = 0; i < employees.length; i++) {
             totalSalary = employees[i].getSalary() + (employees[i].getSalary() * percent);
+            employees[i].setSalary(totalSalary);
             System.out.println(employees[i].getInitials() + " Зарплата проиндексированна до: " + totalSalary);
         }
     }
+
     ////ОТДЕЛЫ
     //СОТРУДНИК С МИНИМАЛЬНОЙ ЗП
-    public static void minDeportamentSalaryEmployees () {
+    public static void minDeportamentSalaryEmployees(int deportament) {
         String minDeportamentEmployee = null;
         double minDeportamentSalary = employees[0].getSalary();
         int minDeportament = employees[0].getDeportament();
         for (int i = 0; i < employees.length; i++) {
-            if (minDeportamentSalary >= employees[i].getSalary() || minDeportament == employees[i].getDeportament()) {
+            if (minDeportamentSalary >= employees[i].getSalary() && deportament == employees[i].getDeportament()) {
                 minDeportamentEmployee = employees[i].getInitials();
                 minDeportamentSalary = employees[i].getSalary();
                 minDeportament = employees[i].getDeportament();
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой в отделе: " + minDeportament + " " + minDeportamentSalary + " " + minDeportamentEmployee);
+        System.out.println("Сотрудник с минимальной зарплатой в отделе " + minDeportament + ": " + minDeportamentSalary + " " + minDeportamentEmployee);
+    }
+
+    //СОТРУДНИК С МАКСИМАЛЬНОЙ ЗП
+    public static void maxDeportamentSalaryEmployees(int deportament) {
+        String maxDeportamentEmployee = null;
+        double maxDeportamentSalary = employees[0].getSalary();
+        int maxDeportament = employees[0].getDeportament();
+        for (int i = 0; i < employees.length; i++) {
+            if (maxDeportamentSalary <= employees[i].getSalary() && deportament == employees[i].getDeportament()) {
+                maxDeportamentEmployee = employees[i].getInitials();
+                maxDeportamentSalary = employees[i].getSalary();
+                maxDeportament = employees[i].getDeportament();
+            }
+        }
+        System.out.println("Сотрудник с минимальной зарплатой в отделе " + maxDeportament + ": " + maxDeportamentSalary + " " + maxDeportamentEmployee);
+    }
+
+    //СРЕДНЯЯ ЗП ОП ОТДЕЛУ
+    public static void averageDeportamentSalary(int deportament) {
+        double salaryDeportamentAverage = 0;
+        int deportamentCounter = 0;
+        if (employees.length > 0) {
+            double sum = 0;
+            for (int i = 0; i < employees.length; i++) {
+                if (employees[i].getDeportament() == deportament) {
+                    sum += employees[i].getSalary();
+                    deportamentCounter += 1;
+                }
+            }
+            salaryDeportamentAverage = sum / deportamentCounter;
+        }
+        System.out.println("Средняя сумма всех затрат отдела: " + salaryDeportamentAverage);
+    }
+
+    //ИНДЕКСАЦИЯ ЗП ОТДЕЛА
+    public static void salaryDeportamentIndexation(int deportament) {
+        double percent = 0.03;
+        double totalSalary;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDeportament() == deportament) {
+                totalSalary = employees[i].getSalary() + (employees[i].getSalary() * percent);
+                employees[i].setSalary(totalSalary);
+                System.out.println(employees[i].getInitials() + " Зарплата проиндексированна до: " + totalSalary);
+            }
+        }
+    }
+
+    //ВСЕ СОТРУДНИКИ ОТДЕЛА
+    public static void employeeDeportamentString(int deportament) {
+        String employeeDeportament = null;
+        int idDeportament = 0;
+        double sallaryDeportament;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDeportament() == deportament) {
+                employeeDeportament = employees[i].getInitials();
+                idDeportament = employees[i].getId();
+                sallaryDeportament = employees[i].getSalary();
+            } else {
+                continue;
+            }
+            System.out.println("ID: " + idDeportament + " Ф.И.О: " + employeeDeportament + " Зарплата: " + sallaryDeportament);
+        }
+    }
+
+    //СОТРУДНИКИ С ЗАРПЛАТОЙ МЕНЕЕ
+    public static void salaryLessSpecified(double salary) {
+        int id = 0;
+        String initials = null;
+        double salaryOut = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (salary >= employees[i].getSalary()) {
+                id = employees[i].getId();
+                initials = employees[i].getInitials();
+                salaryOut = employees[i].getSalary();
+                System.out.println("ID :" + id + " Ф.И.О: " + initials + " Зарплата: " + salaryOut);
+            }
+        }
+    }
+
+    // СОТРУДНИКИ С ЗАРПЛАТОЙ БОЛЕЕ
+    public static void salaryMoreGiven(double salary) {
+        int id = 0;
+        String initials = null;
+        double salaryOut = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (salary >= employees[i].getSalary()) {
+                id = employees[i].getId();
+                initials = employees[i].getInitials();
+                salaryOut = employees[i].getSalary();
+                System.out.println("ID :" + id + " Ф.И.О: " + initials + " Зарплата: " + salaryOut);
+
+            }
+        }
     }
 
     //РАЗДЕЛИТЕЛЬ

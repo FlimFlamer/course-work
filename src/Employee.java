@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Employee {
     private int deportament;
     private int id;
@@ -5,6 +7,7 @@ public class Employee {
     private double salary;
 
     private static int counter = 0;
+
 
 
     public Employee (String initials, int deportament, double salary) {
@@ -45,6 +48,19 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return deportament == employee.deportament && id == employee.id && Double.compare(employee.salary, salary) == 0 && Objects.equals(initials, employee.initials);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deportament, id, initials, salary);
     }
 }
 
