@@ -31,7 +31,7 @@ public class Main {
         book.separator();
         book.averageDeportamentSalary(5);
         book.separator();
-        book.salaryDeportamentIndexation(2);
+        book.salaryDeportamentIndexation(2, 0.03);
         book.separator();
         book.employeeDeportamentString(4);
         book.separator();
