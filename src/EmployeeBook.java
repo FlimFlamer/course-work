@@ -1,17 +1,8 @@
 public class EmployeeBook {
     private final Employee[] employees = new Employee[10];
+    int size;
 
     public EmployeeBook() {
-        employees[0] = new Employee("Работник Первый", 1, 35000);
-        employees[1] = new Employee("Работник Второй", 1, 32000);
-        employees[2] = new Employee("Работник Третий", 2, 34000);
-        employees[3] = new Employee("Работник Четвертый", 2, 37000);
-        employees[4] = new Employee("Работник Пятый", 3, 40000);
-        employees[5] = new Employee("Работник Шестой", 3, 20000);
-        employees[6] = new Employee("Работник Седьмой", 4, 31000);
-        employees[7] = new Employee("Работник Восьмой", 4, 33000);
-        employees[8] = new Employee("Работник Девятый", 5, 39000);
-        employees[9] = new Employee("Работник Десятый", 5, 39000);
     }
 
 
@@ -202,7 +193,6 @@ public class EmployeeBook {
 
     //ДОБАВЛЕНИЕ НОВОГО СОТРУДНИКА
     public void addEmployee(String initials, int deportament, double salary) {
-        int size = 0;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
                 System.out.println("Нельзя добавить сотрудника, в книге нет места");
@@ -215,7 +205,6 @@ public class EmployeeBook {
 
     // УДАЛЕНИЕ CОТРУДНИКА
     public void removeEmployee(String initials) {
-        int size = 0;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getInitials().equalsIgnoreCase(initials)) {
                 System.out.println(employees[i].getInitials() + " удален");

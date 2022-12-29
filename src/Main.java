@@ -3,6 +3,16 @@ public class Main {
     public static EmployeeBook book = new EmployeeBook();
 
     public static void main(String[] args) {
+        book.addEmployee("Работник Первый", 1,30000);
+        book.addEmployee("Работник Второй", 1,25000);
+        book.addEmployee("Работник Третий", 2,27000);
+        book.addEmployee("Работник Четвертый", 2,26000);
+        book.addEmployee("Работник Пятый", 3,31000);
+        book.addEmployee("Работник Шестой", 3,35000);
+        book.addEmployee("Работник Седьмой", 4,40000);
+        book.addEmployee("Работник Восьмой", 4,42000);
+        book.addEmployee("Работник Девятый", 5,36000);
+        book.addEmployee("Работник Десятый", 5,33000);
 
         book.separator();
         System.out.println("Список работников: ");
