@@ -1,6 +1,5 @@
 public class EmployeeBook {
     private final Employee[] employees = new Employee[10];
-    private int size;
 
     public EmployeeBook() {
         employees[0] = new Employee("Работник Первый", 1, 35000);
@@ -36,34 +35,38 @@ public class EmployeeBook {
     }
 
     //СОТРУДНИК С МИНИМАЛЬНОЙ ЗП
-    public void minSalaryEmployees() {
+    public Employee[] minSalaryEmployees() {
         String minEmployee = null;
+        Employee[] result = null;
         double minSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && minSalary >= employees[i].getSalary()) {
                 minEmployee = employees[i].getInitials();
                 minSalary = employees[i].getSalary();
+                result = employees;
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой: " + minSalary + " " + minEmployee);
+        return result;
     }
 
     //СОТРУДНИК С МАКСИМАЛЬНОЙ ЗП
-    public void maxSalaryEmployees() {
+    public Employee [] maxSalaryEmployees() {
         String maxEmployee = null;
+        Employee[] result = null;
         double maxSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && maxSalary <= employees[i].getSalary()) {
                 maxEmployee = employees[i].getInitials();
                 maxSalary = employees[i].getSalary();
+                result = employees;
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой: " + maxSalary + " " + maxEmployee);
+        return result;
     }
 
     //СРЕДНЕЕ ЗНАЧЕНИЕ ЗП
-    public void averageSalary() {
-
+    public double averageSalary() {
+        double total = 0;
         double salaryAverage = 0;
         if (employees.length > 0) {
             double sum = 0;
@@ -71,14 +74,15 @@ public class EmployeeBook {
                 if (employees[i] != null) {
                     sum += employees[i].getSalary();
                 }
-                salaryAverage = sum / employees.length;
             }
-            System.out.println("Средняя сумма всех затрат: " + salaryAverage);
+            salaryAverage = sum / employees.length;
+            total= salaryAverage;
         }
+        return total;
     }
 
     //ФИО ВСЕХ СОТРУДНИКОВ
-    public void initialsEmployee() {
+    public void printInitialsEmployee() {
         for (int i = 0; i < employees.length; i++)
             if (employees[i] != null) {
                 System.out.println(employees[i].getInitials());
@@ -87,47 +91,52 @@ public class EmployeeBook {
 
     ////ПОВЫШЕНАЯ СЛОЖНОСТЬ
     //ИНДЕКСАЦИЯ ЗАРПЛАТ
-    public void salaryIndexation() {
-        double percent = 0.03;
+    public Employee [] salaryIndexation(double percent) {
         double totalSalary;
+        Employee[] result = null;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
                 totalSalary = employees[i].getSalary() + (employees[i].getSalary() * percent);
                 employees[i].setSalary(totalSalary);
-                System.out.println(employees[i].getInitials() + " Зарплата проиндексированна до: " + totalSalary);
+                result = employees;
             }
         }
+        return result;
     }
 
     ////ОТДЕЛЫ
     //СОТРУДНИК С МИНИМАЛЬНОЙ ЗП
-    public void minDeportamentSalaryEmployees(int deportament) {
+    public Employee [] minDeportamentSalaryEmployees(int deportament) {
         String minDeportamentEmployee = null;
         double minDeportamentSalary = employees[0].getSalary();
         int minDeportament = employees[0].getDeportament();
+        Employee[] result = null;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && minDeportamentSalary >= employees[i].getSalary() && deportament == employees[i].getDeportament()) {
                 minDeportamentEmployee = employees[i].getInitials();
                 minDeportamentSalary = employees[i].getSalary();
                 minDeportament = employees[i].getDeportament();
+                result = employees;
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой в отделе " + minDeportament + ": " + minDeportamentSalary + " " + minDeportamentEmployee);
+       return result;
     }
 
     //СОТРУДНИК С МАКСИМАЛЬНОЙ ЗП
-    public void maxDeportamentSalaryEmployees(int deportament) {
+    public Employee[] maxDeportamentSalaryEmployees(int deportament) {
         String maxDeportamentEmployee = null;
         double maxDeportamentSalary = employees[0].getSalary();
         int maxDeportament = employees[0].getDeportament();
+        Employee[] result = null;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && maxDeportamentSalary <= employees[i].getSalary() && deportament == employees[i].getDeportament()) {
                 maxDeportamentEmployee = employees[i].getInitials();
                 maxDeportamentSalary = employees[i].getSalary();
                 maxDeportament = employees[i].getDeportament();
+                result = employees;
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой в отделе " + maxDeportament + ": " + maxDeportamentSalary + " " + maxDeportamentEmployee);
+        return result;
     }
 
     //СРЕДНЯЯ ЗП ОП ОТДЕЛУ
@@ -148,8 +157,7 @@ public class EmployeeBook {
     }
 
     //ИНДЕКСАЦИЯ ЗП ОТДЕЛА
-    public void salaryDeportamentIndexation(int deportament) {
-        double percent = 0.03;
+    public void salaryDeportamentIndexation(int deportament, double percent) {
         double totalSalary;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getDeportament() == deportament) {
@@ -161,59 +169,43 @@ public class EmployeeBook {
     }
 
     //ВСЕ СОТРУДНИКИ ОТДЕЛА
-    public void employeeDeportamentString(int deportament) {
-        String employeeDeportament = null;
-        int idDeportament = 0;
-        double sallaryDeportament;
+    public Employee [] employeeDeportamentString(int deportament) {
+        Employee[] result = null;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getDeportament() == deportament) {
-                employeeDeportament = employees[i].getInitials();
-                idDeportament = employees[i].getId();
-                sallaryDeportament = employees[i].getSalary();
-            } else {
-                continue;
+                result = employees;
             }
-            System.out.println("ID: " + idDeportament + " Ф.И.О: " + employeeDeportament + " Зарплата: " + sallaryDeportament);
         }
+        return result;
     }
-
     //СОТРУДНИКИ С ЗАРПЛАТОЙ МЕНЕЕ
-    public void salaryLessSpecified(double salary) {
-        int id = 0;
-        String initials = null;
-        double salaryOut = 0;
+    public Employee [] salaryLessSpecified(double salary) {
+        Employee[] result = null;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && salary >= employees[i].getSalary()) {
-                id = employees[i].getId();
-                initials = employees[i].getInitials();
-                salaryOut = employees[i].getSalary();
-                System.out.println("ID :" + id + " Ф.И.О: " + initials + " Зарплата: " + salaryOut);
+                result = employees;
             }
         }
+        return result;
     }
 
     // СОТРУДНИКИ С ЗАРПЛАТОЙ БОЛЕЕ
-    public void salaryMoreGiven(double salary) {
-        int id = 0;
-        String initials = null;
-        double salaryOut = 0;
+    public Employee[] salaryMoreGiven(double salary) {
+        Employee[] result = null;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && salary >= employees[i].getSalary()) {
-                id = employees[i].getId();
-                initials = employees[i].getInitials();
-                salaryOut = employees[i].getSalary();
-                System.out.println("ID :" + id + " Ф.И.О: " + initials + " Зарплата: " + salaryOut);
-
+                result = employees;
             }
         }
+        return result;
     }
 
     //ДОБАВЛЕНИЕ НОВОГО СОТРУДНИКА
     public void addEmployee(String initials, int deportament, double salary) {
+        int size = 0;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
                 System.out.println("Нельзя добавить сотрудника, в книге нет места");
-                return;
             }
         }
         Employee employee = new Employee(initials, deportament, salary);
@@ -223,16 +215,15 @@ public class EmployeeBook {
 
     // УДАЛЕНИЕ CОТРУДНИКА
     public void removeEmployee(String initials) {
+        int size = 0;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getInitials().equalsIgnoreCase(initials)) {
                 System.out.println(employees[i].getInitials() + " удален");
                 System.arraycopy(employees, i + 1, employees, i, size - i - 1);
                 employees[size - 1] = null;
                 size--;
-                return;
             }
             System.out.println("Сотрудник не найден");
-            break;
         }
     }
 
@@ -265,10 +256,8 @@ public class EmployeeBook {
         for (int i = 1; i <= 5; i++) {
             System.out.println("Отдел: " + i);
             for (int i1 = 0; i1 < employees.length; i1++) {
-                if (employees[i] != null) {
-                    if (employees[i1].getDeportament() == i) {
+                    if (employees[i1].getDeportament() == i && employees[i] != null) {
                         System.out.println(employees[i1].getInitials());
-                    }
                 }
             }
         }

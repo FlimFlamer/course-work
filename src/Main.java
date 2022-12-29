@@ -21,9 +21,9 @@ public class Main {
         book.separator();
         System.out.println("Ф.И.О всех сотрудников: ");
         book.separator();
-        book.initialsEmployee();
+        book.printInitialsEmployee();
         book.separator();
-        book.salaryIndexation();
+        book.salaryIndexation(0.03);
         book.separator();
         book.minDeportamentSalaryEmployees(4);
         book.separator();
