@@ -1,53 +1,23 @@
 import java.util.Objects;
 
 public class Employee {
-    private int deportament;
-    private int id;
-    private String initials;
-    private double salary;
+    private static int idCount = 0;
+    private final String fullName;
+    private int department;
+    private int salary;
+    private final int id;
 
-    private static int counter = 0;
-
-
-
-    public Employee (String initials, int deportament, double salary) {
-        this.id = counter;
-        this.initials = initials;
-        this.deportament = deportament;
+    public Employee(String fullName, int department, int salary) {
+        this.fullName = fullName;
+        this.department = department;
         this.salary = salary;
-        counter +=1;
+        this.id = idCount;
+        idCount += 1;
     }
+
     @Override
-    public String toString() {
-        return "ID: " + id + " Ф.И.О: " + initials + " Отдел: " + deportament + " Зарплата: " + salary;
-    }
-
-
-    public int getDeportament() {
-        return deportament;
-    }
-
-    public int getId() {
-
-        return id;
-    }
-
-    public String getInitials() {
-
-        return initials;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setDeportament(int deportament) {
-
-    this.deportament = deportament;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public String toString(){
+        return "id: " + id + " ФИО: " + fullName + " Отдел: " + department + " Зарплата: " + salary;
     }
 
     @Override
@@ -55,12 +25,43 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return deportament == employee.deportament && id == employee.id && Double.compare(employee.salary, salary) == 0 && Objects.equals(initials, employee.initials);
+        return department == employee.department && salary == employee.salary && id == employee.id && fullName.equals(employee.fullName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(deportament, id, initials, salary);
+        return Objects.hash(fullName, department, salary, id);
+    }
+
+    public String getFullName() {
+        return this.fullName;
+    }
+
+    public int getDepartment() {
+        return this.department;
+    }
+
+    public int getSalary() {
+        return this.salary;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setDepartment(int department) {
+        if (department < 1 || department > 5){
+            throw new IllegalArgumentException("Существует только 5 отделов");
+        } else {
+            this.department = department;
+        }
+    }
+
+    public void setSalary(int salary) {
+        if (salary < 0){
+            throw new IllegalArgumentException("Вы ввели отрицательную зарплату");
+        } else {
+            this.salary = salary;
+        }
     }
 }
-
