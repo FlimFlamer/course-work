@@ -75,28 +75,28 @@ public class Main {
 
         // Вывод всех работников, чья зарплата меньше n
         System.out.println("Вывод всех работников, чья зарплата меньше n");
-        employeeBook.printAllEmployeesWithSalaryLessThan(20_000);
+        employeeBook.printAllEmployeesWithSalaryLessThan(20000);
         System.out.println();
 
         // Вывод всех работников, чья зарплата больше n
         System.out.println("Вывод всех работников, чья зарплата больше n");
-        employeeBook.printAllEmployeesWithSalaryMoreThan(20_000);
+        employeeBook.printAllEmployeesWithSalaryMoreThan(20000);
         System.out.println();
 
         // Удаление сотрудника
         System.out.println("Удаление сотрудника");
-        employeeBook.removeEmployee(0);
-        employeeBook.removeEmployee("Колесникова Ульяна Егоровна");
+        employeeBook.removeEmployee(9);
+        employeeBook.removeEmployee("Работник Десятый");
         System.out.println();
 
         // Изменение зарплаты сотрудника по ФИО
         System.out.println("Изменение зарплаты сотрудника по ФИО");
-        employeeBook.setEmployeeSalaryByFullname("Завьялов Пётр Артёмович", 100_000);
+        employeeBook.setEmployeeSalaryByFullname("Работник Первый", 100000);
         System.out.println();
 
         // Изменение отдела сотрудника по ФИО
         System.out.println("Изменение отдела сотрудника по ФИО");
-        employeeBook.setEmployeeDepartmentByFullname("Завьялов Пётр Артёмович", 3);
+        employeeBook.setEmployeeDepartmentByFullname("Работник Первый", 3);
         System.out.println();
 
         // Вывод всех сотрудников отсортированный по отделам
@@ -105,16 +105,16 @@ public class Main {
     }
 
     public static void initialiseEmployees(){
-        employeeBook.addEmployee("Исаева Валерия Степановна", 1, 35_000);
-        employeeBook.addEmployee("Завьялов Пётр Артёмович", 2, 39_000);
-        employeeBook.addEmployee("Филиппова Маргарита Родионовна", 3, 45_000);
-        employeeBook.addEmployee("Колесникова Ульяна Егоровна", 5, 75_000);
-        employeeBook.addEmployee("Демин Роман Романович", 4, 25_000);
-        employeeBook.addEmployee("Артамонова Алия Данииловна", 2, 35_000);
-        employeeBook.addEmployee("Лебедев Евгений Андреевич", 1, 15_000);
-        employeeBook.addEmployee("Зубов Марк Ярославович", 3, 55_000);
-        employeeBook.addEmployee("Вдовина Анастасия Андреевна", 4, 15_000);
-        employeeBook.addEmployee("Овчинников Михаил Кириллович", 1, 30_000);
+        employeeBook.addEmployee("Первый Работник", 1, 30000);
+        employeeBook.addEmployee("Второй Работник", 1, 31000);
+        employeeBook.addEmployee("Третий Работник", 2, 21000);
+        employeeBook.addEmployee("Четвертый Работник", 2, 26000);
+        employeeBook.addEmployee("Пятый Работник", 3, 41000);
+        employeeBook.addEmployee("Шестрой Работник", 3, 40000);
+        employeeBook.addEmployee("Седьмой Работник", 4, 15000);
+        employeeBook.addEmployee("Восьмой Работник", 4, 19000);
+        employeeBook.addEmployee("Девятый Работник", 5, 28000);
+        employeeBook.addEmployee("Десятый Работник", 5, 29000);
     }
 
 }
